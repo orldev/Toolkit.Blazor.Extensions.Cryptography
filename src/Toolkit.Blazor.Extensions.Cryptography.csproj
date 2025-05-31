@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageId>Snail.Toolkit.Blazor.Extensions.Cryptography</PackageId>
+        <PackageTags>System.Security.Cryptography</PackageTags>
+        <Title>Toolkit.Blazor.Extensions.Cryptography</Title>
+        <Authors>Toolkit</Authors>
+        <Description>Extension for the framework Blazor</Description>
+        <RepositoryUrl>https://github.com/orldev/Toolkit.Blazor.Extensions.Cryptography</RepositoryUrl>
+        <Copyright>Toolkit, 2023</Copyright>
+        <PackageProjectUrl>https://github.com/orldev/Toolkit.Blazor.Extensions.Cryptography</PackageProjectUrl>
+        <RepositoryType>GitHub</RepositoryType>
+        <!-- SourceLink specific details: https://github.com/dotnet/sourcelink/blob/master/README.md -->
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.0.1" />
+        <PackageReference Include="Microsoft.JSInterop" Version="9.0.5" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.5" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.5" />
+        <PackageReference Include="Snail.Toolkit.Cryptography" Version="1.0.2" />
+    </ItemGroup>
+    
+</Project>
