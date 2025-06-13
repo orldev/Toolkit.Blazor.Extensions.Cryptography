@@ -27,10 +27,10 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="Microsoft.JSInterop" Version="9.0.5" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
-        <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.5" />
-        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.5" />
+        <PackageReference Include="Microsoft.JSInterop" Version="9.0.6" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.6" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.6" />
         <PackageReference Include="Snail.Toolkit.Cryptography" Version="1.0.2" />
     </ItemGroup>
     
