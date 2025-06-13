@@ -43,7 +43,7 @@ public static class ServiceCollectionExtensions
             o.ModulusLengthInBits = 2048;
             o.HashMethod = HashAlgo.SHA256;
         });
-        services.TryAddSingleton<IJsAsymmetricCipher, JsJsAsymmetricCipher>();
+        services.TryAddSingleton<IJsAsymmetricCipher, JsAsymmetricCipher>();
         return services;
     }
     

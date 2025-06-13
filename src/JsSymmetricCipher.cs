@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
@@ -42,6 +43,7 @@ namespace Toolkit.Blazor.Extensions.Cryptography;
 public class JsSymmetricCipher(IJSRuntime jSRuntime, IOptions<SymCryptoOpts> options) : ISymmetricCipher, IAsyncDisposable
 {
     private readonly SymCryptoOpts _options = options.Value;
+    private readonly SemaphoreSlim _jsInteropSemaphore = new(1, 1); 
     private readonly Lazy<Task<IJSObjectReference>> _module = new(() => jSRuntime.InvokeAsync<IJSObjectReference>(
         "import", "./_content/Snail.Toolkit.Blazor.Extensions.Cryptography/symmetric.js").AsTask());
     
@@ -118,10 +120,20 @@ public class JsSymmetricCipher(IJSRuntime jSRuntime, IOptions<SymCryptoOpts> opt
     /// <param name="value">The value to pass to the function</param>
     /// <returns>The result of the JavaScript operation</returns>
     /// <exception cref="JSException">Thrown when JavaScript interop fails</exception>
-    private async Task<T> JsModuleInvokeAsync<T>(string name, object value)
+    private async ValueTask<T> JsModuleInvokeAsync<T>(string name, object value)
     {
-        var module = await _module.Value;
-        return await module.InvokeAsync<T>(name, value, _options.CreateParams());
+        try
+        {
+            await _jsInteropSemaphore.WaitAsync().ConfigureAwait(false);
+        
+            var module = await _module.Value;
+            return await module.InvokeAsync<T>(name, value, _options.CreateParams())
+                .ConfigureAwait(false);
+        }
+        finally
+        {
+            _jsInteropSemaphore.Release();
+        }
     }
     
     /// <summary>
