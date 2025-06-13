@@ -21,7 +21,7 @@ namespace Toolkit.Blazor.Extensions.Cryptography;
 /// </remarks>
 /// <param name="jSRuntime">The JS runtime for interop operations</param>
 /// <param name="options">Configuration options for the cryptographic operations</param>
-public class JsJsAsymmetricCipher(IJSRuntime jSRuntime, IOptions<AsymCryptoOpts> options) : IJsAsymmetricCipher, IAsyncDisposable
+public class JsAsymmetricCipher(IJSRuntime jSRuntime, IOptions<AsymCryptoOpts> options) : IJsAsymmetricCipher, IAsyncDisposable
 {
     private readonly AsymCryptoOpts _options = options.Value;
     private readonly Lazy<Task<IJSObjectReference>> _module = new(() => jSRuntime.InvokeAsync<IJSObjectReference>(
